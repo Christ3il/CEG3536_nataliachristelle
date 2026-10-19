@@ -58,7 +58,7 @@
 
 # JOURNAL.md — Journal d'équipe, CEG 3536, laboratoire 2 (automne 2026)
 
-Équipe : `<NomA>` et `<NomB>` — Section : `A01 / A02` — Dépôt Git : `<adresse>`
+Équipe : `Christelle` et `Natalia` — Section : `A01` — Dépôt Git : `<adresse>`
 
 ## Suivi du jalon J1
 
@@ -71,23 +71,23 @@
 
 | Séance | Réalise | Valide (essais, mesures, relecture) | Périphérique configuré ou mesuré par chacun |
 |---|---|---|---|
-| Séance 1 (13 / 16 oct.) | | | |
-| Séance 2 (20 / 23 oct.) | | | |
+| Séance 1 (16 oct.) |Christelle |Natalia |Christelle |
+| Séance 2 (23 oct.) |Natalia |Christelle |Natalia |
 
 ## Calculs préalables (avant la séance 1)
 
 | Grandeur | Formule | Valeur | Vérifiée par (essai) |
 |---|---|---|---|
-| `PWM_PSC`, `PWM_ARR` | f = 4 MHz / ((PSC + 1)(ARR + 1)) = 20 kHz | | T3 |
-| `CCR1` pour 25 / 50 / 75 / 100 % | pct × (ARR + 1) / 100 | | T3 |
-| `SYSTICK_LOAD_1MS` | 4 MHz × 1 ms − 1 | | T10 |
+| `PWM_PSC`, `PWM_ARR` | f = 4 MHz / ((PSC + 1)(ARR + 1)) = 20 kHz |PSC=0, ARR=199 | T3 |
+| `CCR1` pour 25 / 50 / 75 / 100 % | pct × (ARR + 1) / 100 |50/100!150/200 | T3 |
+| `SYSTICK_LOAD_1MS` | 4 MHz × 1 ms − 1 |ARR = 99 : 100 pas, 1 %| T10 |
 | Fronts par tour (arbre de sortie) | 2 × 11 × 34 | | T5 |
-| tr/min à partir de `vitesse_fronts` | fronts × 120 / 748 (fenêtre 500 ms) | | T6 |
-| Fronts attendus par fenêtre de 500 ms à 100 % | 350 tr/min (arbre de sortie) × 748 / 120 | | T6 |
+| tr/min à partir de `vitesse_fronts` | fronts × 120 / 748 (fenêtre 500 ms) |ARR = 399 : 400 pas, 0,25 %| T6 |
+| Fronts attendus par fenêtre de 500 ms à 100 % | 350 tr/min (arbre de sortie) × 748 / 120 |400 kHz sur PE9 | T6 |
 
 ## Journal labo2
 
-### Séance 1 — `16 oct.` — réalise : `<nom>` / valide : `<nom>`
+### Séance 1 — `16 oct.` — réalise : `Christelle` / valide : `Natalia`
 - Objectifs :
 - Fait :
 - Décisions (sens réel de rotation pour AI1 = 1, AI2 = 0 ; `ENC_SENS_INVERSE` ; variante buzzer) :
@@ -95,7 +95,7 @@
 - Mesures (PWM, SysTick, bips) :
 - Validations Git (auteur, message) :
 
-### Séance 2 — `<date>` — réalise : `<nom>` / valide : `<nom>`
+### Séance 2 — `23 oct` — réalise : `Natalia` / valide : `Christelle`
 - Objectifs :
 - Fait :
 - Décisions :
