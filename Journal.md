@@ -321,9 +321,9 @@ Analyse interne / externe (plage, résolution, bruit) :
 ## Journal des séances
 
 ### Séance 1 — `7 nov` — réalise : `Natalia` / valide : `Christelle`
-- Objectifs :mise en œuvre
+- Objectifs :mise en œuvre, Projet qui compile en C + assembleur; véhicule fonctionnel comme au laboratoire 2 à partir de main.c; calculs consignés.
 - Fait :
-- Décisions (découpage des modules, format des trames, routine L3-A choisie) :
+- Décisions (découpage des modules, format des trames, routine L3-A choisie) : Motor set pwm
 - Difficultés et solutions :
 - Mesures :
 - Validations Git :
@@ -333,7 +333,7 @@ Analyse interne / externe (plage, résolution, bruit) :
 - Validations Git :
 
 ### Séance 2 — `14 nov` — réalise : `Christelle` / valide : `Natalia`
-- Objectifs :achèvement et démonstration
+- Objectifs :achèvement et démonstration, Toutes les exigences démontrées; J2 validé; fiches périphériques « ADC/DMA » et « LPUART1 » remplies; démonstration validée en présence des deux membres.
 - Fait :
 - Décisions :
 - Difficultés et solutions :
