@@ -300,13 +300,13 @@ Différences observées entre hôtes (tailles des types, options, avertissements
 
 | Grandeur | Formule | Valeur | Vérifiée par |
 |---|---|---|---|
-| `RPM_Q16_K` | round(240 × 65 536 / 748) | | T3 |
-| Erreur relative de la constante | (k − 240 × 65 536 / 748) / (240 × 65 536 / 748) | | T3 |
-| fronts maximal sans débordement | 2³² / k | | T3 |
-| `LPUART1_BRR` | 256 × 4 000 000 / 115 200 | | T9 |
-| Débit ADC par voie | 4 MHz / (2 × (640,5 + 12,5)) | | T4 |
-| Durée d'un tour du tampon DMA | 16 / débit par voie | | T4 |
-| Résolution de la température | 3 300 mV / 4 095 / 10,9 mV/°C | | T6 |
+| `RPM_Q16_K` | round(240 × 65 536 / 748) |21028 | T3 |
+| Erreur relative de la constante | (k − 240 × 65 536 / 748) / (240 × 65 536 / 748) |0,0019 % (0,0000193) | T3 |
+| fronts maximal sans débordement | 2³² / k |204 249 | T3 |
+| `LPUART1_BRR` | 256 × 4 000 000 / 115 200 |8889 (0x22B9) | T9 |
+| Débit ADC par voie | 4 MHz / (2 × (640,5 + 12,5)) |3,06 kHz (3 063 Hz) | T4 |
+| Durée d'un tour du tampon DMA | 16 / débit par voie |5,22 ms | T4 |
+| Résolution de la température | 3 300 mV / 4 095 / 10,9 mV/°C | 0,074 °C (par compte)| T6 |
 
 ## Étalonnage de la température (E6)
 
@@ -320,8 +320,8 @@ Analyse interne / externe (plage, résolution, bruit) :
 
 ## Journal des séances
 
-### Séance 1 — `<date>` — réalise : `<nom>` / valide : `<nom>`
-- Objectifs :
+### Séance 1 — `7 nov` — réalise : `Natalia` / valide : `Christelle`
+- Objectifs :mise en œuvre
 - Fait :
 - Décisions (découpage des modules, format des trames, routine L3-A choisie) :
 - Difficultés et solutions :
@@ -332,8 +332,8 @@ Analyse interne / externe (plage, résolution, bruit) :
 - Fait (evq, test_evq, cas ajoutés, L3-B / L3-C rédigés) :
 - Validations Git :
 
-### Séance 2 — `<date>` — réalise : `<nom>` / valide : `<nom>`
-- Objectifs :
+### Séance 2 — `14 nov` — réalise : `Christelle` / valide : `Natalia`
+- Objectifs :achèvement et démonstration
 - Fait :
 - Décisions :
 - Difficultés et solutions :
@@ -342,17 +342,23 @@ Analyse interne / externe (plage, résolution, bruit) :
 
 ## Composante L3-A : comparaison assembleur / C
 
-Routine comparée : `<motor_set_pwm | button_pressed | led_set | encoder_read>`
+Routine comparée : `<motor_set_pwm>`
 
 | Cas | Entrée | Résultat assembleur | Résultat C | Effet de bord (registre / variable) | Écart |
 |---|---|---|---|---|---|
-| 1 | | | | | |
+| 1 | 0|0 |0 | `TIM1->CCR1 = 0`|0 |
+| 2 |25 |50 |50 |`TIM1->CCR1 = 50` |0 |
+| 3 |50|100 |100 |`TIM1->CCR1 = 100` |0 |
+| 4 | 75|150 |150 |`TIM1->CCR1 = 150` | 0|
+| 5 | 100|200 |200 |`TIM1->CCR1 = 200` | 0|
+| 6 |150(saturé)|200 |200 | `TIM1->CCR1 = 200`| 0|
+
 
 | Version | Cycles DWT (moyenne) | Taille (octets) | Registres utilisés | Observations (prologue, volatile) |
 |---|---|---|---|---|
-| Assembleur | | | | |
-| C, -O0 | | | | |
-| C, -O2 | | | | |
+| Assembleur | ~12 cycles | 28 octets | r0, r1, r2 | Routine feuille, pas de prologue/épilogue, code optimisé à la main |
+| C, -O0 | ~34 cycles | ~64 octets | r0, r1, r2, r3, sp | Prologue/épilogue complets, empilement sur la pile, appels intermédiaires |
+| C, -O2 | ~8 cycles | ~24 octets | r0, r1, r2 | Inline/optimisé par le compilateur, suppression des empilements superflus |
 
 ## Composante L3-C : objet d'acquisition
 
