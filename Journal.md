@@ -149,8 +149,8 @@
 
 | Plateforme | Compilateur et version | Commande | Résultat (cas réussis / échecs) | Date et validation Git |
 |---|---|---|---|---|
-| Windows | | `make` dans `hote/` | | |
-| Linux | |Cas 1: Reussi | | |
+| Windows | | `make` dans `hote/` |Cas1: Réussi Cas2:Réussi Cas3: Réussi Cas4 Reussi Cas5: Réussi Cas6:Réussi Cas7: Réussi Cas8 Reussi Cas 9:Réussi | |
+| Linux | |Cas 1: Réussi | Cas1: Réussi Cas2:Réussi Cas3: Réussi Cas4 Reussi Cas5: Réussi Cas6:Réussi Cas7: Réussi Cas8 Reussi Cas 9:Réussi| |
 | STM32 (cible) | arm-none-eabi-gcc | commande série `q` | | |
 
 Cas ajoutés par l'équipe (au-delà des 9 fournis) :
